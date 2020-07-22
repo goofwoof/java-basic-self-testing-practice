@@ -30,9 +30,9 @@ class BooleanOperatorsTest {
     //  please write your answers directly(modify the value of expectedResult to equal actualResults).
     //
     // <--start
-    boolean[] expectedResult = {};
+    boolean[] expectedResult = {true,false,false,true,true,false,true,false,false,true,true,false,false,true};
     // --end-->
 
-    assertArrayEquals(expectedResult, actualResults);
+    assertArrayEquals(actualResults,expectedResult);
   }
 }
