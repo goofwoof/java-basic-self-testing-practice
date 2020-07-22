@@ -25,7 +25,7 @@ class CollectionsTest {
         assertIterableEquals(Arrays.asList("Hello", "World", "!"), createList(iterator));
     }
 
-    @SuppressWarnings({"unused", "UnnecessaryLocalVariable"})
+    @SuppressWarnings({"unused"})
     private static List<String> createList(Iterator<String> iterator) {
         List<String> list = new ArrayList<>();
 
@@ -36,6 +36,10 @@ class CollectionsTest {
         //
         // <--start
 
+        //iterator.forEachRemaining(str->list.add(str));
+        while(iterator.hasNext()){
+            list.add(iterator.next());
+        }
         // --end-->
 
         return list;
@@ -54,14 +58,15 @@ class CollectionsTest {
         ListIterator<String> iterator = staff.listIterator();
         iterator.next();
         iterator.add("Juliet");
+        //System.out.println(staff);
         iterator.previous();
         iterator.remove();
-
+        //System.out.println(staff);
         // TODO:
         //  Please write your answer directly.
         //
         // <--start
-        final List<String> expected = null;
+        final List<String> expected = Arrays.asList("Amy","Bob","Carl");
         // --end-->
 
         assertIterableEquals(expected, staff);
@@ -81,7 +86,7 @@ class CollectionsTest {
         //  Please write down your answer directly.
         //
         // <--start
-        final List<Integer> expected = null;
+        final List<Integer> expected = Arrays.asList(0,1,2,10,11);
         // --end-->
 
         assertIterableEquals(expected, integers);
