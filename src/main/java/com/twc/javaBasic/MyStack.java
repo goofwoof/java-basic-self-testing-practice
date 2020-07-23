@@ -24,12 +24,13 @@ public class MyStack {
 
         // TODO: Please push the value into the storage here.
         // <--start
-
+        storage[count++] = value;
         // --end-->
     }
 
     private void ensureCapacity() {
         int newCapacity = capacity * GROW_FACTOR;
+
 
         // TODO:
         //  Please create a new array of size newCapacity. Copy the original values into The new
@@ -37,7 +38,12 @@ public class MyStack {
         //  IMPORTANT: You SHOULD NOT USE COLLECTIONS (such as List<T>) OTHER THAN ARRAY.
         //
         // <--start
-
+        int[] newstorage = new int[newCapacity];
+        for(int i=0;i<capacity;i++){
+            newstorage[i] = storage[i];
+        }
+        capacity = newCapacity;
+        storage = newstorage;
         // --end-->
     }
 
@@ -57,7 +63,10 @@ public class MyStack {
         //  Please pop one element from the array. You should update the `count` field
         //  as well.
         // <--start
-
+        count--;
+        if(count>=0){
+            return storage[count];
+        }
         // --end-->
 
         throw new UnsupportedOperationException("Stack is empty.");
