@@ -7,7 +7,8 @@ public class NameImpl implements WithName, Person {
         //  Please implement the method to pass the test.
         //
         // <--start
-        throw new RuntimeException("Not implemented");
+        return Person.super.getName();
+        //throw new RuntimeException("Not implemented");
         // --end-->
     }
 }

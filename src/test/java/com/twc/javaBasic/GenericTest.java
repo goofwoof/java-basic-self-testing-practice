@@ -90,7 +90,14 @@ class GenericTest {
   //  A wildcard is not a type variable, so we can’t write code that uses ? as a type.
   // <--start
   private static void swap(Pair<?> pair) {
-    throw new RuntimeException("Not implemented");
+    //throw new RuntimeException("Not implemented");
+    swapHelper(pair);
+  }
+
+  private static <T> void swapHelper(Pair<T> pair) {
+    T t = pair.getFirst();//T是具体的某个类型。
+    pair.setFirst(pair.getSecond());
+    pair.setSecond(t);
   }
 
   // TODO: You can add additional method within the range if you like
