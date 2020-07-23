@@ -17,7 +17,9 @@ class StringTest {
         //  Please modify the following line to pass the test. It is really easy to pass
         //  the test. But you have to tell why.
         // <--start
-        final boolean areSame = true;
+        final boolean areSame = false;
+        //两个当然不是一个引用
+        //
         // --end-->
 
         assertEquals("The new string", modifiedString);
@@ -34,7 +36,8 @@ class StringTest {
         //  Please modify the following line to pass the test. It is really easy to pass
         //  the test. But you have to tell why.
         // <--start
-        final boolean areSame = true;
+        final boolean areSame = false;
+        //==是比较引用是否是同一个引用
         // --end-->
 
         assertEquals("The string with tailing space.", modifiedString);
@@ -52,7 +55,7 @@ class StringTest {
         //  Please modify the following line to pass the test. It is really easy to pass
         //  the test. But you have to tell why.
         // <--start
-        final boolean areSame = true;
+        final boolean areSame = false;
         // --end-->
 
         assertEquals("Part one. Part two.", originalString);
@@ -67,7 +70,7 @@ class StringTest {
 
         // TODO: Extract words in the sentence.
         // <--Start
-        String[] words = null;
+        String[] words = sentence.split(" ");
         // --End-->
 
         assertArrayEquals(new String[] {"This", "is", "Mike"}, words);
