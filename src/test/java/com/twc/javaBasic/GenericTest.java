@@ -3,6 +3,13 @@ package com.twc.javaBasic;
 import com.twc.javaBasic.util.Pair;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GenericTest {
@@ -14,10 +21,26 @@ class GenericTest {
     //  The getMiddle method is a generic method. Now, please call getMiddle method for string
     //  type.
     // <--start
-    final String middle = null;
+    //final String middle = words[words.length/2];
+    final String middle = getMiddle(words);
     // --end-->
 
     assertEquals("Good", middle);
+  }
+
+  class Mynum implements Comparable<Mynum> {
+    int i;
+    public Mynum(int i){
+      this.i = i;
+    }
+
+    @Override
+    public int compareTo(Mynum mynum) {
+      if(i < mynum.i)
+        return -1;
+      else
+        return 1;
+    }
   }
 
   @Test
@@ -25,9 +48,10 @@ class GenericTest {
     // Hint: please implement the min() method in this class.
     int minimumInteger = min(new Integer[] {1, 2, 3});
     double minimumReal = min(new Double[] {1.2, 2.2, -1d});
-
+    //Mynum minimumStr = min(new Mynum[]{new Mynum(3), new Mynum(4), new Mynum(2)});
     assertEquals(1, minimumInteger);
     assertEquals(-1d, minimumReal, 1.0E-05);
+    //assertEquals(2, minimumStr.i);
   }
 
   @Test
@@ -52,8 +76,9 @@ class GenericTest {
   //  You should not change the signature of the function. But you can change
   //  the declaration of the generic type parameter.
   // <--start
-  private static <T> T min(T[] values) {
-    throw new RuntimeException("Not implemented");
+  private static <T extends Number &  Comparable<T> > T min(T[] values) {
+    //throw new RuntimeException("Not implemented");
+    return Arrays.stream(values).sorted().collect(Collectors.toList()).get(0);
   }
   // --end-->
 
