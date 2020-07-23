@@ -16,7 +16,7 @@ class IntegerTypeTest {
     @SuppressWarnings("PointlessArithmeticExpression")
     @Test
     void should_take_care_of_number_type_when_doing_calculation() {
-        final double result1 = 2 / 3 * 5;
+        final double result1 = 2 / 3 * 5; //整数运算没有小数
         final double result2 = 2 * 5 / 3;
 
         // TODO:
@@ -25,8 +25,8 @@ class IntegerTypeTest {
         // Hint:
         //  If you want some reference please see page 59 of "Core Java Vol 1", section 3.5.2.
         // <!--start
-        final double expectedResult1 = Double.NaN;
-        final double expectedResult2 = Double.NaN;
+        final double expectedResult1 = 0.0;
+        final double expectedResult2 = 3.0;
         // --end-->
 
         assertEquals(expectedResult1, result1, +1.0E-05);
@@ -35,13 +35,13 @@ class IntegerTypeTest {
 
     @Test
     void should_truncate_number_when_casting() {
-        final int integer = 0x0123_4567;
-        final short smallerInteger = (short)integer;
+        final int integer = 0x0123_4567; //4byte 0x为16进制
+        final short smallerInteger = (short)integer; //2byte
 
         // TODO:
         //  please modify the following lines to pass the test. Please refer to page 60 of "Core Java Vol 1", section 3.5.3.
         // <!--start
-        final short expected = 0;
+        final short expected = 0x4567;
         // --end-->
 
         assertEquals(expected, smallerInteger);
@@ -51,14 +51,14 @@ class IntegerTypeTest {
     void should_increment() {
         int integer = 3;
 
-        int result = integer++;
+        int result = integer++; //后置++，先运算后+1
 
         // TODO:
         //  please modify the following code to pass the test. You should write the
         //  result directly.
         // <--start
-        final int expectedCurrentInteger = 0;
-        final int expectedResult = 0;
+        final int expectedCurrentInteger = 4;
+        final int expectedResult = 3;
         // --end-->
 
         assertEquals(expectedCurrentInteger, integer);
@@ -69,14 +69,14 @@ class IntegerTypeTest {
     void should_increment_2() {
         int integer = 3;
 
-        int result = ++integer;
+        int result = ++integer; //前置++，先+1后运算
 
         // TODO:
         //   please modify the following code to pass the test. You should write the
         //   result directly.
         // <--start
-        final int expectedCurrentInteger = 0;
-        final int expectedResult = 0;
+        final int expectedCurrentInteger = 4;
+        final int expectedResult = 4;
         // --end-->
 
         assertEquals(expectedCurrentInteger, integer);
@@ -92,6 +92,12 @@ class IntegerTypeTest {
         //  Java library contains method to do this. If you meet some difficulties
         //  here please refer to the following document:
         //  https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#addExact-int-int-
-        throw new RuntimeException("Not implemented");
+        //throw new RuntimeException("Not implemented");
+        int result = left + right;
+        // HD 2-12 Overflow iff both arguments have the opposite sign of the result
+        if (((left ^ result) & (right ^ result)) < 0 | ((left ^ right) & (left ^ result)) <0) {
+            throw new ArithmeticException("integer overflow");
+        }
+        return result;
     }
 }
