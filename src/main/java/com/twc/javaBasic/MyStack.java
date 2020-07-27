@@ -63,8 +63,8 @@ public class MyStack {
         //  Please pop one element from the array. You should update the `count` field
         //  as well.
         // <--start
-        count--;
-        if(count>=0){
+        if(count>0){
+            count--;
             return storage[count];
         }
         // --end-->
